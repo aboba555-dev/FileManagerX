@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Folder silhouette. -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M27,42 Q27,36 33,36 L46,36 L52,42 L75,42 Q81,42 81,48 L81,70 Q81,76 75,76 L33,76 Q27,76 27,70 Z" />
+    <!-- The X. -->
+    <path
+        android:fillColor="#1F44F0"
+        android:pathData="M58.60,50.16 L62.84,54.40 L58.24,59.00 L62.84,63.60 L58.60,67.84 L54.00,63.24 L49.40,67.84 L45.16,63.60 L49.76,59.00 L45.16,54.40 L49.40,50.16 L54.00,54.76 Z" />
+</vector>

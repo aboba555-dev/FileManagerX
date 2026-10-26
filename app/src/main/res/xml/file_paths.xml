@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Whatever the app process can read may be shared; root-only files are staged into the cache first. -->
+    <root-path
+        name="root"
+        path="." />
+    <cache-path
+        name="cache"
+        path="." />
+</paths>

@@ -1,0 +1,47 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests
+        run: ./gradlew :app:testDebugUnitTest
+
+      - name: Build debug APK
+        run: ./gradlew :app:assembleDebug
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: FileManagerX-debug
+          path: app/build/outputs/apk/debug/*.apk
+
+      # Release builds are signed with the debug key unless keystore.properties exists, so this is
+      # a sanity check that R8 and resource shrinking succeed. Real signing happens on your machine.
+      - name: Build release APK
+        continue-on-error: true
+        run: ./gradlew :app:assembleRelease
+
+      - name: Upload release APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: FileManagerX-release
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: ignore
